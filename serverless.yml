@@ -1,0 +1,26 @@
+service: bankeoFileUpload
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  region: us-east-1
+  timeout: 120
+  profile: itconbankeo
+  environment:
+    USERS_FILES_BUCKET: "bankeo-users-docs"
+
+# you can add statements to the Lambda function's IAM Role here
+ iamRoleStatements:
+   - Effect: "Allow"
+     Action:
+       - "s3:*"
+     Resource: "arn:aws:s3:::bankeo-users-docs"
+
+functions:
+  hello:
+    handler: handler.upload
+    events:
+      - http:
+        path: /v1/uploads/files
+        method: post
+        cors: true
