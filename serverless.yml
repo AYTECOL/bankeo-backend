@@ -8,19 +8,18 @@ provider:
   profile: itconbankeo
   environment:
     USERS_FILES_BUCKET: "bankeo-users-docs"
-
-# you can add statements to the Lambda function's IAM Role here
- iamRoleStatements:
-   - Effect: "Allow"
-     Action:
-       - "s3:*"
-     Resource: "arn:aws:s3:::bankeo-users-docs"
+  # you can add statements to the Lambda function's IAM Role here
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - "s3:*"
+      Resource: "*"
 
 functions:
-  hello:
+  upload_user_document:
     handler: handler.upload
     events:
       - http:
-        path: /v1/uploads/files
-        method: post
-        cors: true
+          path: /v1/uploads/files
+          method: post
+          cors: true
