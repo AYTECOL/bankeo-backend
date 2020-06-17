@@ -17,9 +17,34 @@ provider:
 
 functions:
   upload_user_document:
-    handler: handler.upload
+    handler: functions/users/images.upload_doc
     events:
       - http:
-          path: /v1/uploads/files
+          path: /v1/users/upload
           method: post
           cors: true
+          authorizer:
+            name: openAuthorizer
+            resultTtlInSeconds: 0
+  create_users:
+    handler: functions/users/handler.create
+    events:
+      - http:
+          path: /v1/users/create
+          method: post
+          cors: true
+          authorizer:
+            name: openAuthorizer
+            resultTtlInSeconds: 0
+  validate_user_account:
+    handler: functions/users/handler.validateAccount
+    events:
+      - http:
+          path: /v1/users/validate
+          method: post
+          cors: true
+          authorizer:
+            name: openAuthorizer
+            resultTtlInSeconds: 0
+  openAuthorizer:
+    handler: functions/authorizer/handler.open_auth
