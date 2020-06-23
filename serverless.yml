@@ -1,5 +1,5 @@
 service: bankeoFileUpload
-
+custom: ${file(./env/${opt:origin})}
 provider:
   name: aws
   runtime: nodejs12.x
@@ -9,12 +9,14 @@ provider:
   environment:
     USERS_FILES_BUCKET: "bankeo-users-docs"
   # you can add statements to the Lambda function's IAM Role here
+  apiKeys:
+    - name: openKey
+      value: ${self:custom.api_key}-openKey
   iamRoleStatements:
     - Effect: "Allow"
       Action:
         - "s3:*"
       Resource: "*"
-
 functions:
   upload_user_document:
     handler: functions/users/images.upload_doc
@@ -23,9 +25,7 @@ functions:
           path: /v1/users/upload
           method: post
           cors: true
-          authorizer:
-            name: openAuthorizer
-            resultTtlInSeconds: 0
+          private: true
   create_users:
     handler: functions/users/handler.create
     events:

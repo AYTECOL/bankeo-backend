@@ -1,0 +1,19 @@
+const LEDGER_NAME = "bankeoDb";
+const USERS_TABLE_NAME = "DriversLicense";
+const BUSINESSES_TABLE_NAME = "Business";
+const USER_ID_INDEX_NAME = "doc_id";
+const USER_PHONE_NUMBER_INDEX_NAME = "phone_number";
+const BUSINESS_ID_INDEX_NAME = "doc_id";
+const BUSINESS_PHONE_NUMBER_INDEX_NAME = "phone_number";
+const RETRY_LIMIT = 4;
+
+module.exports = {
+  LEDGER_NAME,
+  USERS_TABLE_NAME,
+  BUSINESSES_TABLE_NAME,
+  USER_ID_INDEX_NAME,
+  USER_PHONE_NUMBER_INDEX_NAME,
+  BUSINESS_ID_INDEX_NAME,
+  BUSINESS_PHONE_NUMBER_INDEX_NAME,
+  RETRY_LIMIT
+}
