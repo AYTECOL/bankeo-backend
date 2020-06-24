@@ -16,6 +16,7 @@ provider:
     - Effect: "Allow"
       Action:
         - "s3:*"
+        - "qldb:*"
       Resource: "*"
 functions:
   upload_user_document:
@@ -33,9 +34,7 @@ functions:
           path: /v1/users/create
           method: post
           cors: true
-          authorizer:
-            name: openAuthorizer
-            resultTtlInSeconds: 0
+          private: true
   validate_user_account:
     handler: functions/users/handler.validateAccount
     events:
@@ -43,8 +42,6 @@ functions:
           path: /v1/users/validate
           method: post
           cors: true
-          authorizer:
-            name: openAuthorizer
-            resultTtlInSeconds: 0
-  openAuthorizer:
-    handler: functions/authorizer/handler.open_auth
+          private: true
+  apiAuthorizer:
+    handler: functions/authorizer/handler.auth

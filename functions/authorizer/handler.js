@@ -22,7 +22,7 @@ const generatePolicy = (effect, resource) => {
 
 const verifyPromised = util.promisify(jsonwebtoken.verify.bind(jsonwebtoken));
 
-module.exports.open_auth = async (event, context, callback) => {
+module.exports.auth = async (event, context, callback) => {
   console.log(event)
   if (!event.authorizationToken) {
     console.log('no auth token')
