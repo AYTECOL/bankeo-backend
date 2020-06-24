@@ -18,6 +18,19 @@ let getQldbDriver = () => {
   return qldbDriver;
 }
 
+let insertDocument = (txn, tableName, documents) => {
+   return new Promise((resolve, reject) => {
+    const statement = `INSERT INTO ${tableName} ?`;
+    txn.execute(statement, documents).then((data) => { 
+      resolve(data);
+    }).catch((error) => {
+      reject(error);
+    });
+  });
+}
+
+
 module.exports = {
-  getQldbDriver
+  getQldbDriver,
+  insertDocument
 }

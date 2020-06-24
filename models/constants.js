@@ -1,5 +1,5 @@
 const LEDGER_NAME = "bankeoDb";
-const USERS_TABLE_NAME = "DriversLicense";
+const USERS_TABLE_NAME = "User";
 const BUSINESSES_TABLE_NAME = "Business";
 const USER_ID_INDEX_NAME = "doc_id";
 const USER_PHONE_NUMBER_INDEX_NAME = "phone_number";
