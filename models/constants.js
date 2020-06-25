@@ -1,10 +1,15 @@
+// create tables and indexes
+// CREATE TABLE Client;
+// CREATE INDEX on Client (DocId)
+// CREATE INDEX on Client (PhoneNumber)
+
 const LEDGER_NAME = "bankeoDb";
 const CLIENTS_TABLE_NAME = "Client";
 const BUSINESSES_TABLE_NAME = "Business";
-const CLIENT_ID_INDEX_NAME = "doc_id";
-const CLIENT_PHONE_NUMBER_INDEX_NAME = "phone_number";
-const BUSINESS_ID_INDEX_NAME = "doc_id";
-const BUSINESS_PHONE_NUMBER_INDEX_NAME = "phone_number";
+const CLIENT_ID_INDEX_NAME = "DocId";
+const CLIENT_PHONE_NUMBER_INDEX_NAME = "PhoneNumber";
+const BUSINESS_ID_INDEX_NAME = "DocId";
+const BUSINESS_PHONE_NUMBER_INDEX_NAME = "PhoneNumber";
 const RETRY_LIMIT = 4;
 
 module.exports = {

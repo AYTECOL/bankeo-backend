@@ -18,21 +18,20 @@ let getQldbDriver = () => {
   return qldbDriver;
 }
 
-let insertDocument = (txn, tableName, documents) => {
-   return new Promise((resolve, reject) => {
-    const statement = `INSERT INTO ${tableName} ?`;
-    txn.execute(statement, documents).then((data) => { 
-      console.log(data)
-      resolve({data});
-    }).catch((error) => {
-      console.log(error, 'could not insert into table')
-      reject({error});
-    });
-  });
+let executeStatement = (txn, queryStatement, queryParameter) => {
+  return new Promise((resolve, reject) => {
+   txn.execute(queryStatement, queryParameter).then((result) => { 
+     result = result.getResultList()
+     resolve({'data': result});
+   }).catch((error) => {
+     console.log(error, 'could not insert into table')
+     reject({error});
+   });
+ });
 }
 
 
 module.exports = {
   getQldbDriver,
-  insertDocument
+  executeStatement
 }
